@@ -1,0 +1,19 @@
+name: Audiobooks
+options:
+  deploymentTarget:
+    iOS: 16.0
+targets:
+  Audiobooks:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: .
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.audiobooks # REPLACE with your bundle id
+        DEVELOPMENT_TEAM: YOUR_TEAM_ID # REPLACE with your team id
+    info:
+      path: Info.plist
+      properties:
+        CFBundleDisplayName: "Аудиокниги"

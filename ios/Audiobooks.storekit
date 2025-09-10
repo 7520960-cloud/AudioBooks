@@ -1,0 +1,39 @@
+{
+  "products": [
+    {
+      "id": "com.example.audiobooks.premium_monthly",
+      "type": "auto-renewable-subscription",
+      "displayName": "Premium Monthly",
+      "subscription": {
+        "duration": "P1M",
+        "subscriptionGroup": "audiobooks_group"
+      },
+      "price": "4.99",
+      "familyShareable": true
+    },
+    {
+      "id": "com.example.audiobooks.premium_yearly",
+      "type": "auto-renewable-subscription",
+      "displayName": "Premium Yearly",
+      "subscription": {
+        "duration": "P1Y",
+        "subscriptionGroup": "audiobooks_group"
+      },
+      "price": "49.99",
+      "familyShareable": true
+    },
+    {
+      "id": "com.example.audiobooks.full_unlock",
+      "type": "non-consumable",
+      "displayName": "Full Unlock",
+      "price": "99.99",
+      "familyShareable": true
+    }
+  ],
+  "subscriptionGroups": [
+    {
+      "id": "audiobooks_group",
+      "displayName": "Audiobooks Premium"
+    }
+  ]
+}
