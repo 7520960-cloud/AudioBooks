@@ -27,8 +27,6 @@ workflows:
         script: |
           echo "Listing contents of ios/"
           ls -la "$PROJECT_DIR"
-          echo "Listing generated project structure:"
-          ls -R "$PROJECT_DIR"
 
       - name: List available schemes
         script: |
@@ -55,7 +53,7 @@ workflows:
               -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
               -derivedDataPath "$DERIVED_DATA" \
               CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO \
-              build | xcpretty
+              build
           elif [ -d "Audiobooks.xcworkspace" ]; then
             xcodebuild \
               -workspace Audiobooks.xcworkspace \
@@ -64,15 +62,11 @@ workflows:
               -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
               -derivedDataPath "$DERIVED_DATA" \
               CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO \
-              build | xcpretty
+              build
           else
             echo "No project or workspace to build."
             exit 1
           fi
-
-      - name: "Debug: list build outputs"
-        script: |
-          ls -R "$DERIVED_DATA/Build/Products" || echo "No products found"
 
       - name: Package .app
         script: |
