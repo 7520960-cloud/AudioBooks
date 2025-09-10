@@ -36,7 +36,7 @@ workflows:
             CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO \
             build | xcpretty
 
-      - name: Debug: list build outputs
+      - name: "Debug: list build outputs"
         script: |
           ls -R "$DERIVED_DATA/Build/Products"
 
