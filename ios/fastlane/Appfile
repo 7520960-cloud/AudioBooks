@@ -1,0 +1,3 @@
+app_identifier("com.example.audiobooks")
+apple_id("yourappleid@example.com")
+team_id("YOUR_TEAM_ID")
