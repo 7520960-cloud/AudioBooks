@@ -1,50 +1,7 @@
-workflows:
-  ios-simulator-build:
-    name: iOS Simulator Build
-    max_build_duration: 60
-    instance_type: mac_mini_m1
-
-    environment:
-      vars:
-        PROJECT_DIR: "ios"
-        SCHEME: "Audiobooks"
-        DERIVED_DATA: "$CM_BUILD_DIR/DerivedData"
-      xcode: latest
-
-    scripts:
-      - name: Install build tools
-        script: |
-          brew update
-          brew install xcodegen || true
-          gem install fastlane --no-document
-
-      - name: Generate Xcode project from project.yml
-        script: |
-          cd "$PROJECT_DIR"
-          xcodegen generate
-
-      - name: Check generated files
-        script: |
-          echo "Listing contents of ios/"
-          ls -la "$PROJECT_DIR"
-
-      - name: List available schemes
-        script: |
-          cd "$PROJECT_DIR"
-          if [ -d "Audiobooks.xcodeproj" ]; then
-            echo "Found .xcodeproj"
-            xcodebuild -project Audiobooks.xcodeproj -list -json
-          elif [ -d "Audiobooks.xcworkspace" ]; then
-            echo "Found .xcworkspace"
-            xcodebuild -workspace Audiobooks.xcworkspace -list -json
-          else
-            echo "No Xcode project/workspace found!"
-            exit 1
-          fi
-
       - name: Build for iOS Simulator (no code signing)
         script: |
           cd "$PROJECT_DIR"
+          set -o pipefail
           if [ -d "Audiobooks.xcodeproj" ]; then
             xcodebuild \
               -project Audiobooks.xcodeproj \
@@ -67,17 +24,3 @@ workflows:
             echo "No project or workspace to build."
             exit 1
           fi
-
-      - name: Package .app
-        script: |
-          APP_PATH=$(find "$DERIVED_DATA/Build/Products" -type d -name "*.app" | head -n 1 || true)
-          if [ -z "$APP_PATH" ]; then
-            echo "No .app found, build likely failed."
-            exit 1
-          fi
-          echo "App at: $APP_PATH"
-          mkdir -p "$CM_ARTIFACTS/app"
-          cp -R "$APP_PATH" "$CM_ARTIFACTS/app/"
-
-    artifacts:
-      - app/*.app
