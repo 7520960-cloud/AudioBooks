@@ -3,22 +3,53 @@ workflows:
     name: iOS Simulator Build
     max_build_duration: 60
     instance_type: mac_mini_m1
+
     environment:
       vars:
-        XCODE_WORKSPACE: "ios/Audiobooks.xcodeproj"
-        XCODE_SCHEME: "Audiobooks"
+        PROJECT_DIR: "ios"
+        SCHEME: "Audiobooks"
+        DERIVED_DATA: "$CM_BUILD_DIR/DerivedData"
+      xcode: latest
+
     scripts:
-      - name: Install dependencies
+      - name: Install build tools
         script: |
-          cd ios
-          gem install cocoapods fastlane --no-document
-      - name: Build for simulator
+          brew update
+          brew install xcodegen || true
+          gem install fastlane --no-document
+
+      - name: Generate Xcode project from project.yml
         script: |
-          cd ios
+          cd "$PROJECT_DIR"
+          xcodegen generate
+          ls -la
+
+      - name: Build for iOS Simulator (no code signing)
+        script: |
+          cd "$PROJECT_DIR"
           xcodebuild \
-            -scheme "$XCODE_SCHEME" \
+            -project Audiobooks.xcodeproj \
+            -scheme "$SCHEME" \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.4' \
-            build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+            -derivedDataPath "$DERIVED_DATA" \
+            CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO \
+            build | xcpretty
+
+      - name: Package .app
+        script: |
+          APP_PATH=$(find "$DERIVED_DATA/Build/Products" -type d -name "*.app" | head -n 1)
+          echo "App at: $APP_PATH"
+          mkdir -p "$CM_ARTIFACTS/app"
+          cp -R "$APP_PATH" "$CM_ARTIFACTS/app/"
+
     artifacts:
-      - ios/build/Build/Products/Debug-iphonesimulator/*.app
+      - app/*.app
+
+    publishing:
+      email:
+        recipients:
+          - your@email.com
+        notify:
+          success: true
+          failure: true
