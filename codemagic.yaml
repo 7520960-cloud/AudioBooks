@@ -72,7 +72,9 @@ workflows:
       - name: Collect errors
         script: |
           echo "=== ERRORS FOUND ==="
-          grep -A3 -B3 "error:" build.log || echo "No direct error lines found"
+          grep -A3 -B3 "error:" build.log || true
+          echo "=== Last 100 lines of build.log ==="
+          tail -n 100 build.log
 
       - name: Package .app
         script: |
