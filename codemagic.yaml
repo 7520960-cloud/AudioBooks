@@ -51,7 +51,7 @@ workflows:
               -project Audiobooks.xcodeproj \
               -scheme "$SCHEME" \
               -sdk iphonesimulator \
-              -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+              -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.5' \
               -derivedDataPath "$DERIVED_DATA" \
               CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO \
               build | tee build.log
@@ -60,7 +60,7 @@ workflows:
               -workspace Audiobooks.xcworkspace \
               -scheme "$SCHEME" \
               -sdk iphonesimulator \
-              -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+              -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.5' \
               -derivedDataPath "$DERIVED_DATA" \
               CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO \
               build | tee build.log
@@ -72,7 +72,7 @@ workflows:
       - name: Collect errors
         script: |
           echo "=== ERRORS FOUND ==="
-          grep -i "error:" "$PROJECT_DIR/build.log" || echo "No direct error lines found"
+          grep -A3 -B3 "error:" build.log || echo "No direct error lines found"
 
       - name: Package .app
         script: |
