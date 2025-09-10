@@ -2,20 +2,38 @@ workflows:
   ios-debug:
     name: iOS Debug Build
     max_build_duration: 60
+    instance_type: mac_mini_m1
+
     environment:
       xcode: 16.4
       vars:
+        PROJECT_DIR: "ios"
+        PROJECT_FILE: "Audiobooks.xcodeproj"
         SCHEME: "Audiobooks"
-        PROJECT_PATH: "ios/Audiobooks.xcodeproj"
         DERIVED_DATA: "$CM_BUILD_DIR/DerivedData"
+
     scripts:
-      - name: Install dependencies
+      - name: Install tools
         script: |
-          brew install xcpretty || true
-      - name: Build for iOS Simulator (no code signing)
+          brew install xcodegen || true
+          gem install xcpretty --no-document
+
+      - name: Generate Xcode project
         script: |
+          cd "$PROJECT_DIR"
+          xcodegen generate
+          ls -la
+
+      - name: List schemes
+        script: |
+          cd "$PROJECT_DIR"
+          xcodebuild -list -project $PROJECT_FILE || true
+
+      - name: Build for iOS Simulator
+        script: |
+          cd "$PROJECT_DIR"
           xcodebuild \
-            -project "$PROJECT_PATH" \
+            -project $PROJECT_FILE \
             -scheme "$SCHEME" \
             -sdk iphonesimulator \
             -destination "platform=iOS Simulator,name=iPhone 15,OS=17.5" \
@@ -24,16 +42,18 @@ workflows:
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO \
             build | xcpretty
+
       - name: Package .app
         script: |
           APP_PATH="$DERIVED_DATA/Build/Products/Debug-iphonesimulator/$SCHEME.app"
+          echo "Looking for app at $APP_PATH"
+          ls -R "$DERIVED_DATA" || true
           if [ ! -d "$APP_PATH" ]; then
-            echo "No .app found at $APP_PATH, build failed."
-            ls -R "$DERIVED_DATA/Build" || true
+            echo "No .app found, build failed."
             exit 1
           fi
-          echo "App at: $APP_PATH"
           mkdir -p "$CM_ARTIFACTS/app"
           cp -R "$APP_PATH" "$CM_ARTIFACTS/app/"
+
     artifacts:
       - $CM_ARTIFACTS/app/*.app
