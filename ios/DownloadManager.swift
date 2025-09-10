@@ -1,66 +1,64 @@
 import Foundation
 
-class DownloadManager: NSObject, URLSessionDownloadDelegate, URLSessionTaskDelegate {
+actor DownloadManager: NSObject, URLSessionDownloadDelegate, URLSessionTaskDelegate {
     static let shared = DownloadManager()
     
-    private var session: URLSession!
-    private var activeDownloads: [URL: URLSessionDownloadTask] = [:]
+    private lazy var session: URLSession = {
+        let config = URLSessionConfiguration.default
+        return URLSession(configuration: config, delegate: self, delegateQueue: nil)
+    }()
     
-    override init() {
-        super.init()
-        let configuration = URLSessionConfiguration.background(withIdentifier: "com.audiobooks.download")
-        configuration.sessionSendsLaunchEvents = true
-        configuration.waitsForConnectivity = true
-        session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
-    }
+    private var activeTasks: [URL: URLSessionDownloadTask] = [:]
+    private let fileManager = FileManager.default
     
-    // Начать загрузку
-    func startDownload(from url: URL) {
-        if activeDownloads[url] != nil {
-            return // уже качается
+    /// Скачивание файла и возврат локального URL
+    func download(_ url: URL) async throws -> URL {
+        if let existing = activeTasks[url] {
+            return try await existing.value(forKey: "response") as! URL // безопаснее потом заменить
         }
-        let task = session.downloadTask(with: url)
-        activeDownloads[url] = task
-        task.resume()
-    }
-    
-    // Отменить загрузку
-    func cancelDownload(for url: URL) {
-        activeDownloads[url]?.cancel()
-        activeDownloads.removeValue(forKey: url)
+        
+        let (localURL, _) = try await session.download(from: url)
+        return localURL
     }
     
     // MARK: - URLSessionDownloadDelegate
     
-    func urlSession(_ session: URLSession,
-                    downloadTask: URLSessionDownloadTask,
-                    didFinishDownloadingTo location: URL) {
-        print("✅ Загрузка завершена: \(location)")
-        if let originalURL = downloadTask.originalRequest?.url {
-            activeDownloads.removeValue(forKey: originalURL)
-        }
-        // TODO: переместить файл из временной папки в постоянное хранилище
-    }
-    
-    // MARK: - URLSessionTaskDelegate
-    
-    func urlSession(_ session: URLSession,
-                    task: URLSessionTask,
-                    didCompleteWithError error: Error?) {
-        if let error = error {
-            print("❌ Ошибка загрузки: \(error.localizedDescription)")
-        } else {
-            print("ℹ️ Задача завершена успешно")
-        }
-        if let url = task.originalRequest?.url {
-            activeDownloads.removeValue(forKey: url)
+    nonisolated func urlSession(_ session: URLSession,
+                                downloadTask: URLSessionDownloadTask,
+                                didFinishDownloadingTo location: URL) {
+        Task { [weak self] in
+            guard let self else { return }
+            let destination = self.localFileURL(for: downloadTask.originalRequest?.url)
+            do {
+                if self.fileManager.fileExists(atPath: destination.path) {
+                    try self.fileManager.removeItem(at: destination)
+                }
+                try self.fileManager.moveItem(at: location, to: destination)
+                print("✅ Download finished: \(destination.lastPathComponent)")
+            } catch {
+                print("❌ File move failed: \(error)")
+            }
         }
     }
     
-    // MARK: - Background events
+    nonisolated func urlSession(_ session: URLSession,
+                                task: URLSessionTask,
+                                didCompleteWithError error: Error?) {
+        if let error {
+            print("❌ Download failed: \(error.localizedDescription)")
+        }
+    }
     
-    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
-        print("🌙 Все события для background session завершены")
-        // Если нужно, дернуть completionHandler из AppDelegate
+    nonisolated func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+        print("ℹ️ Background session events finished")
+    }
+    
+    // MARK: - Helpers
+    
+    private func localFileURL(for url: URL?) -> URL {
+        guard let url else { return FileManager.default.temporaryDirectory }
+        let fileName = url.lastPathComponent
+        let dir = fileManager.temporaryDirectory
+        return dir.appendingPathComponent(fileName)
     }
 }
