@@ -1,0 +1,24 @@
+workflows:
+  ios-simulator-build:
+    name: iOS Simulator Build
+    max_build_duration: 60
+    instance_type: mac_mini_m1
+    environment:
+      vars:
+        XCODE_WORKSPACE: "ios/Audiobooks.xcodeproj"
+        XCODE_SCHEME: "Audiobooks"
+    scripts:
+      - name: Install dependencies
+        script: |
+          cd ios
+          gem install cocoapods fastlane --no-document
+      - name: Build for simulator
+        script: |
+          cd ios
+          xcodebuild \
+            -scheme "$XCODE_SCHEME" \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.4' \
+            build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+    artifacts:
+      - ios/build/Build/Products/Debug-iphonesimulator/*.app
