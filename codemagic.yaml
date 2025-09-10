@@ -23,18 +23,67 @@ workflows:
           cd "$PROJECT_DIR"
           xcodegen generate
 
+      - name: Check generated files
+        script: |
+          echo "Listing contents of ios/"
+          ls -la "$PROJECT_DIR"
+
+      - name: List available schemes
+        script: |
+          cd "$PROJECT_DIR"
+          if [ -d "Audiobooks.xcodeproj" ]; then
+            echo "Found .xcodeproj"
+            xcodebuild -project Audiobooks.xcodeproj -list -json
+          elif [ -d "Audiobooks.xcworkspace" ]; then
+            echo "Found .xcworkspace"
+            xcodebuild -workspace Audiobooks.xcworkspace -list -json
+          else
+            echo "No Xcode project/workspace found!"
+            exit 1
+          fi
+
       - name: Build for iOS Simulator (no code signing)
         script: |
           cd "$PROJECT_DIR"
           set -o pipefail
-          xcodebuild \
-            -project Audiobooks.xcodeproj \
-            -scheme "$SCHEME" \
-            -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
-            -derivedDataPath "$DERIVED_DATA" \
-            CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO \
-            build
+          if [ -d "Audiobooks.xcodeproj" ]; then
+            xcodebuild \
+              -project Audiobooks.xcodeproj \
+              -scheme "$SCHEME" \
+              -sdk iphonesimulator \
+              -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+              -derivedDataPath "$DERIVED_DATA" \
+              CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO \
+              build | tee build.log
+          elif [ -d "Audiobooks.xcworkspace" ]; then
+            xcodebuild \
+              -workspace Audiobooks.xcworkspace \
+              -scheme "$SCHEME" \
+              -sdk iphonesimulator \
+              -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+              -derivedDataPath "$DERIVED_DATA" \
+              CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO \
+              build | tee build.log
+          else
+            echo "No project or workspace to build."
+            exit 1
+          fi
+
+      - name: Collect errors
+        script: |
+          echo "=== ERRORS FOUND ==="
+          grep -i "error:" "$PROJECT_DIR/build.log" || echo "No direct error lines found"
+
+      - name: Package .app
+        script: |
+          APP_PATH=$(find "$DERIVED_DATA/Build/Products" -type d -name "*.app" | head -n 1 || true)
+          if [ -z "$APP_PATH" ]; then
+            echo "No .app found, build likely failed."
+            exit 1
+          fi
+          echo "App at: $APP_PATH"
+          mkdir -p "$CM_ARTIFACTS/app"
+          cp -R "$APP_PATH" "$CM_ARTIFACTS/app/"
 
     artifacts:
       - app/*.app
