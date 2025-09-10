@@ -8,6 +8,7 @@ workflows:
       vars:
         PROJECT_DIR: "ios"
         SCHEME: "Audiobooks"
+        DERIVED_DATA: "$CM_BUILD_DIR/DerivedData"
       xcode: latest
 
     scripts:
@@ -32,23 +33,16 @@ workflows:
             -sdk iphonesimulator \
             -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
             -configuration Debug \
+            -derivedDataPath "$DERIVED_DATA" \
             CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO \
             build | xcpretty
 
       - name: Package .app
         script: |
-          APP_PATH=$(find "$PROJECT_DIR"/build -type d -name "*.app" | head -n 1)
+          APP_PATH=$(find "$DERIVED_DATA/Build/Products" -type d -name "*.app" | head -n 1)
           echo "App at: $APP_PATH"
           mkdir -p "$CM_ARTIFACTS"
           cp -R "$APP_PATH" "$CM_ARTIFACTS/"
 
     artifacts:
       - "*.app"
-
-    publishing:
-      email:
-        recipients:
-          - your@email.com
-        notify:
-          success: true
-          failure: true
