@@ -1,7 +1,7 @@
-
 import SwiftUI
 
-struct Book {
+struct Book: Identifiable {
+    let id = UUID()
     let identifier: String
     let title: String
     let description: String
@@ -10,17 +10,32 @@ struct Book {
 }
 
 struct ContentView: View {
-    @StateObject var store = Store()
-    let demo = Book(identifier: "demo", title: "Пример книги", description: "Демо-описание", isPro: true, streamUrls: [URL(string:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")!])
-
+    @StateObject private var store = Store()
+    
+    private let demo = Book(
+        identifier: "demo",
+        title: "Пример книги",
+        description: "Демо-описание",
+        isPro: true,
+        streamUrls: [
+            URL(string: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")!
+        ]
+    )
+    
     var body: some View {
-        NavigationView {
-            VStack {
-                NavigationLink("Открыть книгу", destination: BookDetail(book: demo).environmentObject(store))
+        NavigationStack {
+            VStack(spacing: 20) {
+                NavigationLink("Открыть книгу") {
+                    BookDetail(book: demo)
+                        .environmentObject(store)
+                }
                 Button("Открыть Paywall") { }
-                    .sheet(isPresented: .constant(false)) { PaywallView().environmentObject(store) } // placeholder
+                    .sheet(isPresented: .constant(false)) {
+                        PaywallView().environmentObject(store)
+                    }
             }
             .navigationTitle("Аудиокниги")
+            .padding()
         }
     }
 }
@@ -28,50 +43,57 @@ struct ContentView: View {
 struct BookDetail: View {
     let book: Book
     @StateObject private var audio = AudioPlayer.shared
-    @EnvironmentObject var store: Store
-
+    @EnvironmentObject private var store: Store
+    
     var body: some View {
         List {
-            Text(book.title).font(.title2).bold()
-            Text(book.description)
-
+            VStack(alignment: .leading, spacing: 8) {
+                Text(book.title)
+                    .font(.title2).bold()
+                Text(book.description)
+            }
+            
             Section(header: Text("Главы")) {
                 ForEach(Array(book.streamUrls.enumerated()), id: \.offset) { idx, url in
                     let chapterId = "part_\(idx)"
                     let locked = book.isPro && !store.isSubscribed && idx >= 1
+                    
                     HStack {
-                        VStack(alignment: .leading) {
-                            Text("Часть \(idx+1)")
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Часть \(idx + 1)")
                             if let pos = ProgressStore.shared.loadProgress(bookId: book.identifier, chapterId: chapterId) {
-                                ProgressView(value: min(pos/3000, 1.0))
+                                ProgressView(value: min(pos / 3000, 1.0))
                                     .frame(height: 6)
-                                Text(String(format: "Прогресс: %.0f сек", pos)).font(.caption)
+                                Text("Прогресс: \(Int(pos)) сек")
+                                    .font(.caption)
                             }
                         }
                         Spacer()
-                        if locked { Image(systemName: "lock.fill").foregroundColor(.orange) }
+                        if locked {
+                            Image(systemName: "lock.fill")
+                                .foregroundColor(.orange)
+                        }
                     }
                     .contentShape(Rectangle())
                     .onTapGesture {
                         if locked {
-                            // показать paywall модально
-                            // в демо: просто печать
                             print("Show paywall")
                         } else {
                             Task {
                                 if let local = try? await DownloadManager.shared.download(url) {
-                                    AudioPlayer.shared.play(url: local, bookId: book.identifier, chapterId: chapterId)
+                                    await audio.play(url: local, bookId: book.identifier, chapterId: chapterId)
                                 } else {
-                                    AudioPlayer.shared.play(url: url, bookId: book.identifier, chapterId: chapterId)
+                                    await audio.play(url: url, bookId: book.identifier, chapterId: chapterId)
                                 }
                             }
                         }
                     }
                 }
+                
                 HStack {
                     Button("Пауза") { audio.pause() }
                     Button("Таймер: конец главы") { audio.startSleepTimerToEndOfChapter() }
-                    Button("Таймер: 15 мин") { audio.startSleepTimer(seconds: 15*60) }
+                    Button("Таймер: 15 мин") { audio.startSleepTimer(seconds: 15 * 60) }
                 }
             }
         }
