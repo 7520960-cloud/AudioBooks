@@ -1,19 +1,22 @@
 name: Audiobooks
 options:
+  bundleIdPrefix: com.example
   deploymentTarget:
     iOS: 16.0
 targets:
   Audiobooks:
     type: application
     platform: iOS
-    deploymentTarget: "16.0"
     sources:
-      - path: .
+      - .
+    resources:
+      - Assets.xcassets
+      - LaunchScreen.storyboard
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.example.audiobooks # REPLACE with your bundle id
-        DEVELOPMENT_TEAM: YOUR_TEAM_ID # REPLACE with your team id
-    info:
-      path: Info.plist
-      properties:
-        CFBundleDisplayName: "Аудиокниги"
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.audiobooks
+        SWIFT_VERSION: 5.0
+        IPHONEOS_DEPLOYMENT_TARGET: 16.0
+        TARGETED_DEVICE_FAMILY: "1,2" # iPhone и iPad
+    scheme:
+      testTargets: []
