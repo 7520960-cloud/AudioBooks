@@ -1,10 +1,17 @@
 workflows:
-  ios-debug:
+  ios-simulator:
     name: iOS Simulator Build
     max_build_duration: 60
     environment:
       xcode: latest
     scripts:
+      - name: Install XcodeGen
+        script: |
+          brew install xcodegen
+      - name: Generate Xcode project from project.yml
+        script: |
+          cd ios
+          xcodegen generate
       - name: Build for iOS Simulator (no code signing)
         script: |
           xcodebuild \
