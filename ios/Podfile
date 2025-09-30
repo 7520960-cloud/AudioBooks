@@ -1,8 +1,14 @@
-platform :ios, '15.0'
+platform :ios, '13.0'
 
-project 'Audiobooks.xcodeproj'
+project '../Audiobooks.xcodeproj'
 
 target 'Audiobooks' do
   use_frameworks!
   use_modular_headers!
+
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Storage'
+  pod 'Google-Mobile-Ads-SDK'
+  pod 'Purchases'
 end
