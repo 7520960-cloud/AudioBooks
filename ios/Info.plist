@@ -6,12 +6,16 @@
     <string>Аудиокниги</string>
     <key>CFBundleIdentifier</key>
     <string>com.serhiitkachuk.Audiobooks</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
     <key>UIBackgroundModes</key>
     <array>
       <string>audio</string>
       <string>fetch</string>
     </array>
     <key>NSAppleMusicUsageDescription</key>
-    <string>Приложение использует медиатеку для воспроизведения аудио-файлов.</string>
+    <string>Приложение использует медиатеку для воспроизведения аудиофайлов.</string>
 </dict>
 </plist>
