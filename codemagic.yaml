@@ -5,12 +5,8 @@ workflows:
       xcode: 16.4
       cocoapods: default
     integrations:
-      app_store_connect: Coda3
+      app_store_connect: integration
     scripts:
-      - name: Install dependencies
-        script: |
-          cd ios
-          pod install --repo-update
       - name: Build app for release
         script: |
           xcode-project build-ipa \
