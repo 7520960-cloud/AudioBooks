@@ -5,7 +5,7 @@ workflows:
       xcode: 16.4
       cocoapods: default
     integrations:
-      app_store_connect: integration   # имя интеграции в Codemagic
+      app_store_connect: integration
     scripts:
       - name: Install dependencies
         script: |
