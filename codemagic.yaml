@@ -10,9 +10,10 @@ workflows:
     integrations:
       app_store_connect: Coda3
     scripts:
-      - name: Install dependencies
+      - name: Install CocoaPods
         script: |
-          flutter pub get
+          cd ios
+          pod install
       - name: Build ipa for App Store
         script: |
           xcode-project build-ipa \
