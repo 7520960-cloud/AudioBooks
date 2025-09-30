@@ -1,13 +1,10 @@
-platform :ios, '15.0'
-
-use_frameworks!
-use_modular_headers!
+platform :ios, '13.0'
 
 workspace 'Audiobooks.xcworkspace'
-
 target 'Audiobooks' do
-  project 'Audiobooks.xcodeproj'
+  use_frameworks!
+  use_modular_headers!
 
   pod 'Alamofire'
-  pod 'Kingfisher'
+  pod 'SDWebImage'
 end
