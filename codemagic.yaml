@@ -1,57 +1,36 @@
 workflows:
   ios-appstore:
-    name: iOS Build & Upload
+    name: iOS App Store Build
     max_build_duration: 60
-    instance_type: mac_mini_m1
-
     environment:
-      xcode: latest
-      ios_signing:
-        distribution_type: app_store
-        bundle_identifier: "com.example.audiobooks"
+      xcode: 16.4
+      cocoapods: default
       vars:
-        PROJECT_DIR: "ios"
-        SCHEME: "Audiobooks"
-        DERIVED_DATA: "$CM_BUILD_DIR/DerivedData"
-
+        BUNDLE_ID: "com.serhiitkachuk.Audiobooks"
+        APPLE_TEAM_ID: "CW6VS28729"
+        APP_STORE_CONNECT_ISSUER_ID: "df3224c3-db13-4309-81ef-6d8b4ea05156"
+        APP_STORE_CONNECT_KEY_IDENTIFIER: "c6b9f30e7a494403b97fbd34c27365d2"
+        APP_STORE_CONNECT_PRIVATE_KEY: |
+          -----BEGIN PRIVATE KEY-----
+          (твой ключ .p8 сюда)
+          -----END PRIVATE KEY-----
     scripts:
-      - name: Install tools
+      - name: Install dependencies
         script: |
-          brew install xcodegen || true
-          gem install fastlane --no-document
-
-      - name: Generate Xcode project
+          cd ios
+          pod install
+      - name: Build ipa
         script: |
-          cd "$PROJECT_DIR"
-          xcodegen generate
-
-      - name: List schemes
-        script: |
-          cd "$PROJECT_DIR"
-          xcodebuild -project Audiobooks.xcodeproj -list -json
-
-      - name: Build for simulator
-        script: |
-          cd "$PROJECT_DIR"
-          xcodebuild \
-            -project Audiobooks.xcodeproj \
-            -scheme "$SCHEME" \
-            -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.5' \
-            -derivedDataPath "$DERIVED_DATA" \
-            CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO \
-            build | xcpretty
-
-      - name: Package .app
-        script: |
-          APP_PATH=$(find "$DERIVED_DATA/Build/Products/Debug-iphonesimulator" -type d -name "*.app" | head -n 1 || true)
-          if [ -z "$APP_PATH" ]; then
-            echo "No .app found, build failed."
-            exit 1
-          fi
-          echo "App at: $APP_PATH"
-          mkdir -p "$CM_ARTIFACTS/app"
-          cp -R "$APP_PATH" "$CM_ARTIFACTS/app/"
-
+          xcode-project build-ipa \
+            --project "ios/Audiobooks.xcodeproj" \
+            --scheme "Audiobooks" \
+            --archive-xcargs "DEVELOPMENT_TEAM=$APPLE_TEAM_ID" \
+            --archive-xcargs "PRODUCT_BUNDLE_IDENTIFIER=$BUNDLE_ID"
     artifacts:
-      - app/*.app
+      - build/ios/ipa/*.ipa
+    publishing:
+      app_store_connect:
+        auth:
+          api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+          key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+          issuer_id: $APP_STORE_CONNECT_ISSUER_ID
