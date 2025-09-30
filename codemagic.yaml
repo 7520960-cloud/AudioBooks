@@ -7,10 +7,13 @@ workflows:
     integrations:
       app_store_connect: Coda3
     scripts:
+      - name: Install dependencies
+        script: |
+          pod install --repo-update
       - name: Build app for release
         script: |
           xcode-project build-ipa \
-            --project ios/Audiobooks.xcodeproj \
+            --project Audiobooks.xcodeproj \
             --scheme Audiobooks \
             --archive-flags="-allowProvisioningUpdates"
     artifacts:
