@@ -1,34 +1,19 @@
 name: Audiobooks
 options:
   bundleIdPrefix: com.serhiitkachuk
-  deploymentTarget:
-    iOS: 15.0
-
 configs:
   Debug: debug
   Release: release
-
-settings:
-  base:
-    PRODUCT_NAME: Audiobooks
-    PRODUCT_BUNDLE_IDENTIFIER: com.serhiitkachuk.Audiobooks
-    DEVELOPMENT_TEAM: CW6VS28729
-    SWIFT_VERSION: 5.0
-    IPHONEOS_DEPLOYMENT_TARGET: 15.0
-
 targets:
   Audiobooks:
     type: application
     platform: iOS
-    sources:
-      - .
-    resources:
-      - Info.plist
+    sources: .
+    bundleId: com.serhiitkachuk.Audiobooks
+    deploymentTarget: "16.0"
+    info:
+      path: Info.plist
     settings:
       base:
         PRODUCT_NAME: Audiobooks
-        PRODUCT_BUNDLE_IDENTIFIER: com.serhiitkachuk.Audiobooks
         DEVELOPMENT_TEAM: CW6VS28729
-        CODE_SIGN_STYLE: Manual
-        PROVISIONING_PROFILE_SPECIFIER: audiobooks_appstore_profile
-        CODE_SIGN_IDENTITY: "Apple Distribution"
