@@ -1,10 +1,11 @@
 platform :ios, '13.0'
 
-workspace 'Audiobooks.xcworkspace'
-target 'Audiobooks' do
-  use_frameworks!
-  use_modular_headers!
+use_frameworks!
+use_modular_headers!
 
-  pod 'Alamofire'
-  pod 'SDWebImage'
+target 'Audiobooks' do
+  project 'Audiobooks.xcodeproj'
+
+  pod 'Alamofire', '~> 5.6'
+  pod 'SwiftyJSON', '~> 5.0'
 end
