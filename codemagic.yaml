@@ -10,14 +10,13 @@ workflows:
     integrations:
       app_store_connect: Coda3
     scripts:
-      - name: Install CocoaPods
+      - name: Get Flutter packages
         script: |
-          cd ios
-          pod install
+          flutter pub get
       - name: Build ipa for App Store
         script: |
           xcode-project build-ipa \
-            --workspace ios/Audiobooks.xcworkspace \
+            --project ios/Audiobooks.xcodeproj \
             --scheme Audiobooks
     artifacts:
       - build/ios/ipa/*.ipa
