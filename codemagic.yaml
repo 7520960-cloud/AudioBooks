@@ -1,23 +1,57 @@
 workflows:
   ios-appstore:
-    name: iOS App Store Build
+    name: iOS Build & Upload
+    max_build_duration: 60
+    instance_type: mac_mini_m1
+
     environment:
-      vars:
-        XCODE_WORKSPACE: "Audiobooks.xcworkspace"
-        XCODE_SCHEME: "Audiobooks"
+      xcode: latest
       ios_signing:
-        certificates:
-          - SSS
-        provisioning_profiles:
-          - audiobooks_appstore_profile
+        distribution_type: app_store
+        bundle_identifier: "com.example.audiobooks"
+      vars:
+        PROJECT_DIR: "ios"
+        SCHEME: "Audiobooks"
+        DERIVED_DATA: "$CM_BUILD_DIR/DerivedData"
+
     scripts:
-      - name: Install dependencies
+      - name: Install tools
         script: |
-          flutter pub get
-      - name: Build ipa for App Store
+          brew install xcodegen || true
+          gem install fastlane --no-document
+
+      - name: Generate Xcode project
         script: |
-          xcode-project build-ipa \
-            --workspace "$XCODE_WORKSPACE" \
-            --scheme "$XCODE_SCHEME"
+          cd "$PROJECT_DIR"
+          xcodegen generate
+
+      - name: List schemes
+        script: |
+          cd "$PROJECT_DIR"
+          xcodebuild -project Audiobooks.xcodeproj -list -json
+
+      - name: Build for simulator
+        script: |
+          cd "$PROJECT_DIR"
+          xcodebuild \
+            -project Audiobooks.xcodeproj \
+            -scheme "$SCHEME" \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.5' \
+            -derivedDataPath "$DERIVED_DATA" \
+            CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO \
+            build | xcpretty
+
+      - name: Package .app
+        script: |
+          APP_PATH=$(find "$DERIVED_DATA/Build/Products/Debug-iphonesimulator" -type d -name "*.app" | head -n 1 || true)
+          if [ -z "$APP_PATH" ]; then
+            echo "No .app found, build failed."
+            exit 1
+          fi
+          echo "App at: $APP_PATH"
+          mkdir -p "$CM_ARTIFACTS/app"
+          cp -R "$APP_PATH" "$CM_ARTIFACTS/app/"
+
     artifacts:
-      - build/ios/ipa/*.ipa
+      - app/*.app
