@@ -1,36 +1,22 @@
 workflows:
   ios-appstore:
     name: iOS App Store Build
-    max_build_duration: 60
     environment:
       xcode: 16.4
       cocoapods: default
-      vars:
-        BUNDLE_ID: "com.serhiitkachuk.Audiobooks"
-        APPLE_TEAM_ID: "CW6VS28729"
-        APP_STORE_CONNECT_ISSUER_ID: "df3224c3-db13-4309-81ef-6d8b4ea05156"
-        APP_STORE_CONNECT_KEY_IDENTIFIER: "c6b9f30e7a494403b97fbd34c27365d2"
-        APP_STORE_CONNECT_PRIVATE_KEY: |
-          -----BEGIN PRIVATE KEY-----
-          (твой ключ .p8 сюда)
-          -----END PRIVATE KEY-----
+    integrations:
+      app_store_connect: integration
     scripts:
-      - name: Install dependencies
-        script: |
-          cd ios
-          pod install
-      - name: Build ipa
+      - name: Build app for release
         script: |
           xcode-project build-ipa \
-            --project "ios/Audiobooks.xcodeproj" \
-            --scheme "Audiobooks" \
-            --archive-xcargs "DEVELOPMENT_TEAM=$APPLE_TEAM_ID" \
-            --archive-xcargs "PRODUCT_BUNDLE_IDENTIFIER=$BUNDLE_ID"
+            --project ios/Audiobooks.xcodeproj \
+            --scheme Audiobooks \
+            --archive-flags="-allowProvisioningUpdates"
     artifacts:
-      - build/ios/ipa/*.ipa
+      - build/ipa/*.ipa
     publishing:
       app_store_connect:
-        auth:
-          api_key: $APP_STORE_CONNECT_PRIVATE_KEY
-          key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
-          issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+        auth: integration
+        submit_to_testflight: true
+        submit_to_app_store: false
