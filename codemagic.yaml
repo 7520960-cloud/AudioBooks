@@ -4,11 +4,6 @@ workflows:
     environment:
       xcode: 16.4
       cocoapods: default
-      ios_signing:
-        certificates:
-          - SSS
-        provisioning_profiles:
-          - audiobooks_appstore_profile
     scripts:
       - name: Install dependencies
         script: |
