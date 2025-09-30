@@ -1,39 +1,26 @@
 workflows:
   ios-appstore:
-    name: iOS App Store Build
+    name: iOS App Store
     environment:
       ios_signing:
-        distribution_type: app_store
-        bundle_identifier: "com.serhiitkachuk.Audiobooks"
-        provisioning_profiles:
-          - audiobooks_appstore_profile
         certificates:
           - SSS
+        provisioning_profiles:
+          - audiobooks_appstore_profile
+    integrations:
+      app_store_connect: Coda3
     scripts:
       - name: Install dependencies
         script: |
-          cd ios
-          pod install --repo-update
-      - name: Build ipa for distribution
+          flutter pub get
+      - name: Build ipa for App Store
         script: |
-          xcodebuild \
-            -workspace "ios/Runner.xcworkspace" \
-            -scheme "Runner" \
-            -sdk iphoneos \
-            -configuration Release \
-            archive \
-            -archivePath $CM_BUILD_DIR/Runner.xcarchive \
-            DEVELOPMENT_TEAM=$APP_STORE_CONNECT_TEAM_ID \
-            PRODUCT_BUNDLE_IDENTIFIER=com.serhiitkachuk.Audiobooks
-          xcodebuild \
-            -exportArchive \
-            -archivePath $CM_BUILD_DIR/Runner.xcarchive \
-            -exportOptionsPlist ios/exportOptions.plist \
-            -exportPath $CM_BUILD_DIR
+          xcode-project build-ipa \
+            --workspace ios/Audiobooks.xcworkspace \
+            --scheme Audiobooks
     artifacts:
       - build/ios/ipa/*.ipa
     publishing:
       app_store_connect:
         auth: integration
         submit_to_testflight: true
-        submit_to_app_store: false
