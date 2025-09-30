@@ -4,6 +4,8 @@ workflows:
     environment:
       xcode: 16.4
       cocoapods: default
+    integrations:
+      app_store_connect: Coda3
     scripts:
       - name: Install dependencies
         script: |
@@ -19,9 +21,6 @@ workflows:
       - build/ios/ipa/*.ipa
     publishing:
       app_store_connect:
-        auth:
-          api_key: $APP_STORE_CONNECT_PRIVATE_KEY
-          key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
-          issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+        auth: integration
         submit_to_testflight: true
         submit_to_app_store: false
