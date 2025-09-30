@@ -3,22 +3,30 @@ workflows:
     name: iOS App Store Build
     environment:
       xcode: 16.4
-    integrations:
-      app_store_connect: integration
-
+      cocoapods: default
+      ios_signing:
+        certificates:
+          - SSS
+        provisioning_profiles:
+          - audiobooks_appstore_profile
     scripts:
+      - name: Install dependencies
+        script: |
+          cd ios
+          pod install --repo-update
       - name: Build app for release
         script: |
           xcode-project build-ipa \
-            --project Audiobooks.xcodeproj \
+            --project ios/Audiobooks.xcodeproj \
             --scheme Audiobooks \
             --archive-flags="-allowProvisioningUpdates"
-
     artifacts:
       - build/ios/ipa/*.ipa
-
     publishing:
       app_store_connect:
-        auth: integration
+        auth:
+          api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+          key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+          issuer_id: $APP_STORE_CONNECT_ISSUER_ID
         submit_to_testflight: true
         submit_to_app_store: false
