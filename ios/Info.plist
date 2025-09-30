@@ -3,19 +3,15 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleName</key>
-    <string>Аудиокниги</string>
+    <string>Audiobooks</string>
     <key>CFBundleIdentifier</key>
-    <string>com.serhiitkachuk.Audiobooks</string>
-    <key>CFBundleShortVersionString</key>
-    <string>1.0</string>
-    <key>CFBundleVersion</key>
-    <string>1</string>
+    <string>com.yourteam.audiobooks</string>
     <key>UIBackgroundModes</key>
     <array>
       <string>audio</string>
       <string>fetch</string>
     </array>
     <key>NSAppleMusicUsageDescription</key>
-    <string>Приложение использует медиатеку для воспроизведения аудиофайлов.</string>
+    <string>Приложение использует медиатеку для воспроизведения аудио-файлов.</string>
 </dict>
 </plist>
