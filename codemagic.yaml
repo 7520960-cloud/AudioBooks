@@ -1,6 +1,8 @@
 workflows:
   ios-appstore:
     name: iOS App Store
+    instance_type: mac_mini_m1
+    max_build_duration: 60
     environment:
       ios_signing:
         certificates:
@@ -10,9 +12,6 @@ workflows:
     integrations:
       app_store_connect: Coda3
     scripts:
-      - name: Get Flutter packages
-        script: |
-          flutter pub get
       - name: Build ipa for App Store
         script: |
           xcode-project build-ipa \
