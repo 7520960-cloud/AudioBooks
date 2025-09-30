@@ -1,22 +1,15 @@
 name: Audiobooks
 options:
-  bundleIdPrefix: com.example
+  bundleIdPrefix: com.serhiitkachuk
   deploymentTarget:
-    iOS: 16.0
+    iOS: '13.0'
 targets:
   Audiobooks:
     type: application
     platform: iOS
-    sources:
-      - .
-    resources:
-      - Assets.xcassets
-      - LaunchScreen.storyboard
+    sources: .
+    resources: []
     settings:
-      base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.example.audiobooks
-        SWIFT_VERSION: 5.0
-        IPHONEOS_DEPLOYMENT_TARGET: 16.0
-        TARGETED_DEVICE_FAMILY: "1,2" # iPhone и iPad
-    scheme:
-      testTargets: []
+      PRODUCT_BUNDLE_IDENTIFIER: com.serhiitkachuk.Audiobooks
+      INFO_PLIST_FILE: Info.plist
+      SWIFT_VERSION: 5.0
