@@ -5,7 +5,7 @@ workflows:
       xcode: 16.4
       cocoapods: default
     integrations:
-      app_store_connect: integration
+      app_store_connect: Coda3
     scripts:
       - name: Build app for release
         script: |
@@ -17,6 +17,6 @@ workflows:
       - build/ios/ipa/*.ipa
     publishing:
       app_store_connect:
-        auth: integration
+        auth: Coda3
         submit_to_testflight: true
         submit_to_app_store: false
