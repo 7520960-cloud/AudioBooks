@@ -1,10 +1,13 @@
-platform :ios, '13.0'
+platform :ios, '15.0'
+
+use_frameworks!
+use_modular_headers!
+
+workspace 'Audiobooks.xcworkspace'
 
 target 'Audiobooks' do
-  use_frameworks!
-  use_modular_headers!
-
   project 'Audiobooks.xcodeproj'
 
-  pod 'Firebase/Auth'
+  pod 'Alamofire'
+  pod 'Kingfisher'
 end
