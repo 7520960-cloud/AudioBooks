@@ -4,7 +4,7 @@ use_frameworks!
 use_modular_headers!
 
 target 'Audiobooks' do
-  project 'ios/Audiobooks.xcodeproj'
+  project 'Audiobooks.xcodeproj'
   pod 'Alamofire'
   pod 'Kingfisher'
 end
