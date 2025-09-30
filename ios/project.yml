@@ -1,15 +1,33 @@
 name: Audiobooks
 options:
-  bundleIdPrefix: com.serhiitkachuk
+  bundleIdPrefix: com.example
   deploymentTarget:
-    iOS: '13.0'
+    iOS: "16.0"
+  xcodeVersion: "16.0"
+
 targets:
   Audiobooks:
     type: application
     platform: iOS
-    sources: .
-    resources: []
+    sources:
+      - Audiobooks
+    resources:
+      - Audiobooks/Assets.xcassets
+      - Audiobooks/Info.plist
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: com.serhiitkachuk.Audiobooks
-      INFO_PLIST_FILE: Info.plist
-      SWIFT_VERSION: 5.0
+      base:
+        INFOPLIST_FILE: Audiobooks/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.audiobooks
+        SWIFT_VERSION: 5.0
+        IPHONEOS_DEPLOYMENT_TARGET: 16.0
+        TARGETED_DEVICE_FAMILY: "1,2"
+    scheme:
+      testTargets: []
+
+  AudiobooksTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - AudiobooksTests
+    dependencies:
+      - target: Audiobooks
