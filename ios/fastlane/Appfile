@@ -1,3 +1,3 @@
-app_identifier("com.example.audiobooks")
-apple_id("yourappleid@example.com")
-team_id("YOUR_TEAM_ID")
+app_identifier("com.serhiitkachuk.Audiobooks") # наш Bundle ID
+apple_id("ТВОЙ_EMAIL_AppleID")                 # e-mail Apple ID
+team_id("CW6VS28729")                          # Team ID из Developer
