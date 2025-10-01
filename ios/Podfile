@@ -1,12 +1,11 @@
 platform :ios, '16.0'
 
-target 'Audiobooks' do
-  use_frameworks!
-  use_modular_headers!
+use_frameworks!
+use_modular_headers!
 
+target 'Audiobooks' do
+  project 'Audiobooks.xcodeproj'
   pod 'FirebaseCore'
   pod 'FirebaseAuth'
-  pod 'FirebaseFirestore'
+  pod 'FirebaseStorage'
 end
-
-project 'Audiobooks.xcodeproj'
