@@ -2,104 +2,169 @@
 {
   archiveVersion = 1;
   classes = {};
-  objectVersion = 50;
+  objectVersion = 56;
   objects = {
 
-    /* Project object */
-    1D6058900D05DD3D006BFB54 = {
-      isa = PBXProject;
-      attributes = {
-        LastUpgradeCheck = 1640;
-        TargetAttributes = {
-          1D6058910D05DD3D006BFB54 = {
-            CreatedOnToolsVersion = 16.0;
-          };
-        };
-      };
-      buildConfigurationList = C01FCF4F08A954540054247B;
-      compatibilityVersion = "Xcode 14.0";
-      developmentRegion = en;
-      hasScannedForEncodings = 0;
-      knownRegions = ( en, Base );
-      mainGroup = 08FB7793FE84155DC02AAC07;
-      productRefGroup = 1D60588D0D05DD3D006BFB54;
-      projectDirPath = "";
-      projectRoot = "";
-      targets = ( 1D6058910D05DD3D006BFB54 );
-    };
+/* Begin PBXBuildFile section */
+    1D60589D0D05DD56006BFB54 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D60589E0D05DD56006BFB54 /* ContentView.swift */; };
+    1D60589F0D05DD56006BFB54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6058A00D05DD56006BFB54 /* AppDelegate.swift */; };
+/* End PBXBuildFile section */
 
-    /* Target */
-    1D6058910D05DD3D006BFB54 = {
+/* Begin PBXFileReference section */
+    1D60589E0D05DD56006BFB54 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+    1D6058A00D05DD56006BFB54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+    1D6058A20D05DD56006BFB54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+    1D6058A40D05DD56006BFB54 /* Audiobooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audiobooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+    1D60589C0D05DD56006BFB54 = {
+      isa = PBXGroup;
+      children = (
+        1D60589E0D05DD56006BFB54 /* ContentView.swift */,
+        1D6058A00D05DD56006BFB54 /* AppDelegate.swift */,
+        1D6058A20D05DD56006BFB54 /* Info.plist */,
+        1D6058A50D05DD56006BFB54 /* Products */,
+      );
+      sourceTree = "<group>";
+    };
+    1D6058A50D05DD56006BFB54 /* Products */ = {
+      isa = PBXGroup;
+      children = (
+        1D6058A40D05DD56006BFB54 /* Audiobooks.app */,
+      );
+      name = Products;
+      sourceTree = "<group>";
+    };
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+    1D6058910D05DD3D006BFB54 /* Audiobooks */ = {
       isa = PBXNativeTarget;
-      buildConfigurationList = C01FCF4F08A954540054247B;
+      buildConfigurationList = 1D6058A60D05DD56006BFB54 /* Build configuration list for PBXNativeTarget "Audiobooks" */;
       buildPhases = (
-        1D6058920D05DD3D006BFB54,
-        1D6058930D05DD3D006BFB54,
-        1D6058940D05DD3D006BFB54,
+        1D6058A70D05DD56006BFB54 /* Sources */,
+        1D6058A80D05DD56006BFB54 /* Frameworks */,
+        1D6058A90D05DD56006BFB54 /* Resources */,
       );
       buildRules = ();
       dependencies = ();
       name = Audiobooks;
       productName = Audiobooks;
-      productReference = 1D6058950D05DD3D006BFB54;
+      productReference = 1D6058A40D05DD56006BFB54 /* Audiobooks.app */;
       productType = "com.apple.product-type.application";
     };
+/* End PBXNativeTarget section */
 
-    /* Product */
-    1D6058950D05DD3D006BFB54 = {
-      isa = PBXFileReference;
-      explicitFileType = wrapper.application;
-      path = "Audiobooks.app";
-      sourceTree = BUILT_PRODUCTS_DIR;
-    };
-
-    /* Groups */
-    08FB7793FE84155DC02AAC07 = {
-      isa = PBXGroup;
-      children = (
-        1D6058950D05DD3D006BFB54,
+/* Begin PBXProject section */
+    1D6058900D05DD3D006BFB54 /* Project object */ = {
+      isa = PBXProject;
+      attributes = {
+        LastUpgradeCheck = 1640;
+        TargetAttributes = {
+          1D6058910D05DD3D006BFB54 = {
+            CreatedOnToolsVersion = 16.4;
+          };
+        };
+      };
+      buildConfigurationList = 1D6058AA0D05DD56006BFB54 /* Build configuration list for PBXProject "Audiobooks" */;
+      compatibilityVersion = "Xcode 14.0";
+      developmentRegion = en;
+      hasScannedForEncodings = 0;
+      knownRegions = (
+        en,
+        Base,
       );
-      sourceTree = "<group>";
-    };
-
-    /* Build configurations */
-    C01FCF4F08A954540054247B = {
-      isa = XCConfigurationList;
-      buildConfigurations = (
-        C01FCF4E08A954540054247B,
-        C01FCF4F08A954540054247B,
+      mainGroup = 1D60589C0D05DD56006BFB54;
+      productRefGroup = 1D6058A50D05DD56006BFB54 /* Products */;
+      projectDirPath = "";
+      projectRoot = "";
+      targets = (
+        1D6058910D05DD3D006BFB54 /* Audiobooks */,
       );
-      defaultConfigurationIsVisible = 0;
-      defaultConfigurationName = Release;
     };
+/* End PBXProject section */
 
-    C01FCF4E08A954540054247B = {
+/* Begin PBXSourcesBuildPhase section */
+    1D6058A70D05DD56006BFB54 /* Sources */ = {
+      isa = PBXSourcesBuildPhase;
+      files = (
+        1D60589D0D05DD56006BFB54 /* ContentView.swift in Sources */,
+        1D60589F0D05DD56006BFB54 /* AppDelegate.swift in Sources */,
+      );
+    };
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXFrameworksBuildPhase section */
+    1D6058A80D05DD56006BFB54 /* Frameworks */ = {
+      isa = PBXFrameworksBuildPhase;
+      files = (
+      );
+    };
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXResourcesBuildPhase section */
+    1D6058A90D05DD56006BFB54 /* Resources */ = {
+      isa = PBXResourcesBuildPhase;
+      files = (
+      );
+    };
+/* End PBXResourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+    1D6058AB0D05DD56006BFB54 /* Debug */ = {
       isa = XCBuildConfiguration;
       buildSettings = {
+        ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+        CODE_SIGN_STYLE = Automatic;
+        CURRENT_PROJECT_VERSION = 1;
+        GENERATE_INFOPLIST_FILE = YES;
+        IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+        PRODUCT_BUNDLE_IDENTIFIER = com.example.audiobooks;
         PRODUCT_NAME = Audiobooks;
         SWIFT_VERSION = 5.0;
-        IPHONEOS_DEPLOYMENT_TARGET = 16.0;
         TARGETED_DEVICE_FAMILY = "1,2";
       };
       name = Debug;
     };
-
-    C01FCF4F08A954540054247B = {
+    1D6058AC0D05DD56006BFB54 /* Release */ = {
       isa = XCBuildConfiguration;
       buildSettings = {
+        ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+        CODE_SIGN_STYLE = Automatic;
+        CURRENT_PROJECT_VERSION = 1;
+        GENERATE_INFOPLIST_FILE = YES;
+        IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+        PRODUCT_BUNDLE_IDENTIFIER = com.example.audiobooks;
         PRODUCT_NAME = Audiobooks;
         SWIFT_VERSION = 5.0;
-        IPHONEOS_DEPLOYMENT_TARGET = 16.0;
         TARGETED_DEVICE_FAMILY = "1,2";
       };
       name = Release;
     };
+/* End XCBuildConfiguration section */
 
-    /* Build phases */
-    1D6058920D05DD3D006BFB54 = { isa = PBXSourcesBuildPhase; files = (); };
-    1D6058930D05DD3D006BFB54 = { isa = PBXFrameworksBuildPhase; files = (); };
-    1D6058940D05DD3D006BFB54 = { isa = PBXResourcesBuildPhase; files = (); };
+/* Begin XCConfigurationList section */
+    1D6058A60D05DD56006BFB54 /* Build configuration list for PBXNativeTarget "Audiobooks" */ = {
+      isa = XCConfigurationList;
+      buildConfigurations = (
+        1D6058AB0D05DD56006BFB54 /* Debug */,
+        1D6058AC0D05DD56006BFB54 /* Release */,
+      );
+      defaultConfigurationIsVisible = 0;
+      defaultConfigurationName = Release;
+    };
+    1D6058AA0D05DD56006BFB54 /* Build configuration list for PBXProject "Audiobooks" */ = {
+      isa = XCConfigurationList;
+      buildConfigurations = (
+        1D6058AB0D05DD56006BFB54 /* Debug */,
+        1D6058AC0D05DD56006BFB54 /* Release */,
+      );
+      defaultConfigurationIsVisible = 0;
+      defaultConfigurationName = Release;
+    };
+/* End XCConfigurationList section */
 
   };
-  rootObject = 1D6058900D05DD3D006BFB54;
+  rootObject = 1D6058900D05DD3D006BFB54 /* Project object */;
 }
