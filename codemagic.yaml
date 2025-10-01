@@ -14,7 +14,7 @@ workflows:
       - name: Build app for release
         script: |
           xcode-project build-ipa \
-            --workspace ios/Audiobooks.xcworkspace \
+            --project ios/Audiobooks.xcodeproj \
             --scheme Audiobooks \
             --archive-flags="-allowProvisioningUpdates"
     artifacts:
