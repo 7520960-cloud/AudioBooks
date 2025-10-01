@@ -3,31 +3,15 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleName</key>
-    <string>Аудиокниги</string>
-    <key>CFBundleDisplayName</key>
-    <string>Аудиокниги</string>
+    <string>Audiobooks</string>
     <key>CFBundleIdentifier</key>
-    <string>com.example.audiobooks</string>
-    <key>CFBundleShortVersionString</key>
-    <string>1.0.0</string>
-    <key>CFBundleVersion</key>
-    <string>1</string>
-    <key>UILaunchStoryboardName</key>
-    <string>LaunchScreen</string>
-    <key>UIMainStoryboardFile</key>
-    <string>Main</string>
-
+    <string>com.serhiitkachuk.Audiobooks</string>
     <key>UIBackgroundModes</key>
     <array>
-        <string>audio</string>
-        <string>fetch</string>
+      <string>audio</string>
+      <string>fetch</string>
     </array>
-
     <key>NSAppleMusicUsageDescription</key>
     <string>Приложение использует медиатеку для воспроизведения аудио-файлов.</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Микрофон используется для записи и голосовых функций приложения.</string>
-    <key>NSBluetoothAlwaysUsageDescription</key>
-    <string>Bluetooth используется для подключения к аудиоустройствам.</string>
 </dict>
 </plist>
