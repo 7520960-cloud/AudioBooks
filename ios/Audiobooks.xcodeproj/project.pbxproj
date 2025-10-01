@@ -1,0 +1,153 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 50;
+	objects = {
+
+	/* ========== GROUPS ========== */
+	1D60588D0D05DD3D006BFB54 = {
+		isa = PBXGroup;
+		children = (
+			AA1111111111111111111111 /* Sources */,
+			AA2222222222222222222222 /* Products */,
+		);
+		sourceTree = "<group>";
+	};
+
+	AA1111111111111111111111 = {
+		isa = PBXGroup;
+		children = (
+			BB1000000000000000000001 /* AppDelegate.swift */,
+			BB1000000000000000000002 /* AudioPlayer.swift */,
+			BB1000000000000000000003 /* ContentView.swift */,
+			BB1000000000000000000004 /* DownloadManager.swift */,
+			BB1000000000000000000005 /* PaywallView.swift */,
+			BB1000000000000000000006 /* PersistenceController.swift */,
+			BB1000000000000000000007 /* ProgressStore.swift */,
+			BB1000000000000000000008 /* Store.swift */,
+			BB1000000000000000000009 /* Info.plist */,
+		);
+		path = ios;
+		sourceTree = "<group>";
+	};
+
+	AA2222222222222222222222 = {
+		isa = PBXGroup;
+		children = (
+			BB2000000000000000000001 /* Audiobooks.app */,
+		);
+		name = Products;
+		sourceTree = "<group>";
+	};
+
+	/* ========== FILE REFERENCES ========== */
+	BB1000000000000000000001 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+	BB1000000000000000000002 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+	BB1000000000000000000003 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+	BB1000000000000000000004 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
+	BB1000000000000000000005 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+	BB1000000000000000000006 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+	BB1000000000000000000007 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStore.swift; sourceTree = "<group>"; };
+	BB1000000000000000000008 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+	BB1000000000000000000009 = { isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+	BB2000000000000000000001 = { isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audiobooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+
+	/* ========== TARGETS ========== */
+	1D6058910D05DD3D006BFB54 = {
+		isa = PBXNativeTarget;
+		buildConfigurationList = C01FCF4F08A954540054247B /* Build configuration list for PBXNativeTarget "Audiobooks" */;
+		buildPhases = (
+			CC1111111111111111111111 /* Sources */,
+		);
+		buildRules = ();
+		dependencies = ();
+		name = Audiobooks;
+		productName = Audiobooks;
+		productReference = BB2000000000000000000001;
+		productType = "com.apple.product-type.application";
+	};
+
+	CC1111111111111111111111 = {
+		isa = PBXSourcesBuildPhase;
+		files = (
+			DD1000000000000000000001 /* AppDelegate.swift in Sources */,
+			DD1000000000000000000002 /* AudioPlayer.swift in Sources */,
+			DD1000000000000000000003 /* ContentView.swift in Sources */,
+			DD1000000000000000000004 /* DownloadManager.swift in Sources */,
+			DD1000000000000000000005 /* PaywallView.swift in Sources */,
+			DD1000000000000000000006 /* PersistenceController.swift in Sources */,
+			DD1000000000000000000007 /* ProgressStore.swift in Sources */,
+			DD1000000000000000000008 /* Store.swift in Sources */,
+		);
+	};
+
+	/* ========== BUILD CONFIGS ========== */
+	C01FCF4E08A954540054247B = {
+		isa = XCConfigurationList;
+		buildConfigurations = (
+			EE1111111111111111111111 /* Debug */,
+			EE2222222222222222222222 /* Release */,
+		);
+		defaultConfigurationIsVisible = 0;
+		defaultConfigurationName = Release;
+	};
+
+	EE1111111111111111111111 = {
+		isa = XCBuildConfiguration;
+		buildSettings = {
+			INFOPLIST_FILE = ios/Info.plist;
+			LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+			PRODUCT_BUNDLE_IDENTIFIER = com.serhiitkachuk.Audiobooks;
+			PRODUCT_NAME = "$(TARGET_NAME)";
+			SWIFT_VERSION = 5.0;
+			IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+		};
+		name = Debug;
+	};
+
+	EE2222222222222222222222 = {
+		isa = XCBuildConfiguration;
+		buildSettings = {
+			INFOPLIST_FILE = ios/Info.plist;
+			LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+			PRODUCT_BUNDLE_IDENTIFIER = com.serhiitkachuk.Audiobooks;
+			PRODUCT_NAME = "$(TARGET_NAME)";
+			SWIFT_VERSION = 5.0;
+			IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+		};
+		name = Release;
+	};
+
+	/* ========== PROJECT OBJECT ========== */
+	1D6058900D05DD3D006BFB54 = {
+		isa = PBXProject;
+		attributes = {
+			LastUpgradeCheck = 1300;
+			ORGANIZATIONNAME = "Serhii Tkachuk";
+		};
+		buildConfigurationList = C01FCF4E08A954540054247B;
+		compatibilityVersion = "Xcode 13.0";
+		developmentRegion = en;
+		hasScannedForEncodings = 0;
+		knownRegions = (en, Base);
+		mainGroup = 1D60588D0D05DD3D006BFB54;
+		productRefGroup = AA2222222222222222222222;
+		projectDirPath = "";
+		projectRoot = "";
+		targets = (1D6058910D05DD3D006BFB54);
+	};
+
+	/* ========== FILE REFERENCES IN SOURCES ========== */
+	DD1000000000000000000001 = { isa = PBXBuildFile; fileRef = BB1000000000000000000001; };
+	DD1000000000000000000002 = { isa = PBXBuildFile; fileRef = BB1000000000000000000002; };
+	DD1000000000000000000003 = { isa = PBXBuildFile; fileRef = BB1000000000000000000003; };
+	DD1000000000000000000004 = { isa = PBXBuildFile; fileRef = BB1000000000000000000004; };
+	DD1000000000000000000005 = { isa = PBXBuildFile; fileRef = BB1000000000000000000005; };
+	DD1000000000000000000006 = { isa = PBXBuildFile; fileRef = BB1000000000000000000006; };
+	DD1000000000000000000007 = { isa = PBXBuildFile; fileRef = BB1000000000000000000007; };
+	DD1000000000000000000008 = { isa = PBXBuildFile; fileRef = BB1000000000000000000008; };
+	};
+
+	rootObject = 1D6058900D05DD3D006BFB54;
+}
