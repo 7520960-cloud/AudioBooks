@@ -16,8 +16,7 @@ workflows:
           xcode-project build-ipa \
             --project ios/Audiobooks.xcodeproj \
             --scheme Audiobooks \
-            --export-options-plist ios/export_options.plist \
-            --archive-flags="-allowProvisioningUpdates DEVELOPMENT_TEAM=CW6VS28729"
+            --export-options-plist ios/export_options.plist
     artifacts:
       - build/ios/ipa/*.ipa
     publishing:
