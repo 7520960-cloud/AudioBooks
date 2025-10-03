@@ -1,4 +1,4 @@
-// !$*UTF8*$!
+/* !$*UTF8*$! */
 {
   archiveVersion = 1;
   classes = {};
@@ -122,7 +122,8 @@
         CODE_SIGN_STYLE = Automatic;
         CURRENT_PROJECT_VERSION = 1;
         DEVELOPMENT_TEAM = CW6VS28729;
-        GENERATE_INFOPLIST_FILE = YES;
+        GENERATE_INFOPLIST_FILE = NO;
+        INFOPLIST_FILE = Info.plist;
         IPHONEOS_DEPLOYMENT_TARGET = 16.0;
         PRODUCT_BUNDLE_IDENTIFIER = com.example.audiobooks;
         PRODUCT_NAME = Audiobooks;
@@ -139,7 +140,8 @@
         CODE_SIGN_STYLE = Automatic;
         CURRENT_PROJECT_VERSION = 1;
         DEVELOPMENT_TEAM = CW6VS28729;
-        GENERATE_INFOPLIST_FILE = YES;
+        GENERATE_INFOPLIST_FILE = NO;
+        INFOPLIST_FILE = Info.plist;
         IPHONEOS_DEPLOYMENT_TARGET = 16.0;
         PRODUCT_BUNDLE_IDENTIFIER = com.example.audiobooks;
         PRODUCT_NAME = Audiobooks;
