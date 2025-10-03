@@ -1,6 +1,6 @@
 platform :ios, '16.0'
 
-project 'ios/Audiobooks.xcodeproj'
+project 'Audiobooks.xcodeproj'
 
 target 'Audiobooks' do
   use_frameworks!
