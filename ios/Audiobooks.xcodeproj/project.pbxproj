@@ -1,4 +1,4 @@
-/* !$*UTF8*$! */
+// !$*UTF8*$!
 {
   archiveVersion = 1;
   classes = {};
@@ -125,7 +125,7 @@
         GENERATE_INFOPLIST_FILE = NO;
         INFOPLIST_FILE = Info.plist;
         IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-        PRODUCT_BUNDLE_IDENTIFIER = com.example.audiobooks;
+        PRODUCT_BUNDLE_IDENTIFIER = com.serhiitkachuk.Audiobooks;
         PRODUCT_NAME = Audiobooks;
         SWIFT_VERSION = 5.0;
         TARGETED_DEVICE_FAMILY = "1,2";
@@ -143,7 +143,7 @@
         GENERATE_INFOPLIST_FILE = NO;
         INFOPLIST_FILE = Info.plist;
         IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-        PRODUCT_BUNDLE_IDENTIFIER = com.example.audiobooks;
+        PRODUCT_BUNDLE_IDENTIFIER = com.serhiitkachuk.Audiobooks;
         PRODUCT_NAME = Audiobooks;
         SWIFT_VERSION = 5.0;
         TARGETED_DEVICE_FAMILY = "1,2";
