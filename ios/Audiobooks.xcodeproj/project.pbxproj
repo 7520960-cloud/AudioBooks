@@ -6,32 +6,32 @@
   objects = {
 
 /* Begin PBXBuildFile section */
-    AAF0B0010000000000000001 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0AF011000000000000001 /* ContentView.swift */; };
-    AAF0B0020000000000000001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF0AF021000000000000001 /* AppDelegate.swift */; };
+    1D60589D0D05DD56006BFB54 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D60589E0D05DD56006BFB54 /* ContentView.swift */; };
+    1D60589F0D05DD56006BFB54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6058A00D05DD56006BFB54 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-    AAF0AF011000000000000001 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-    AAF0AF021000000000000001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-    AAF0AF031000000000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-    AAF0AF041000000000000001 /* Audiobooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audiobooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+    1D60589E0D05DD56006BFB54 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+    1D6058A00D05DD56006BFB54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+    1D6058A20D05DD56006BFB54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+    1D6058A40D05DD56006BFB54 /* Audiobooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audiobooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-    AAF0AE001000000000000001 = {
+    1D60589C0D05DD56006BFB54 = {
       isa = PBXGroup;
       children = (
-        AAF0AF011000000000000001 /* ContentView.swift */,
-        AAF0AF021000000000000001 /* AppDelegate.swift */,
-        AAF0AF031000000000000001 /* Info.plist */,
-        AAF0AE051000000000000001 /* Products */,
+        1D60589E0D05DD56006BFB54 /* ContentView.swift */,
+        1D6058A00D05DD56006BFB54 /* AppDelegate.swift */,
+        1D6058A20D05DD56006BFB54 /* Info.plist */,
+        1D6058A50D05DD56006BFB54 /* Products */,
       );
       sourceTree = "<group>";
     };
-    AAF0AE051000000000000001 /* Products */ = {
+    1D6058A50D05DD56006BFB54 /* Products */ = {
       isa = PBXGroup;
       children = (
-        AAF0AF041000000000000001 /* Audiobooks.app */,
+        1D6058A40D05DD56006BFB54 /* Audiobooks.app */,
       );
       name = Products;
       sourceTree = "<group>";
@@ -39,137 +39,88 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-    AAF0AD001000000000000001 /* Audiobooks */ = {
+    1D6058910D05DD3D006BFB54 /* Audiobooks */ = {
       isa = PBXNativeTarget;
-      buildConfigurationList = AAF0AC051000000000000001 /* Build configuration list for PBXNativeTarget "Audiobooks" */;
+      buildConfigurationList = 1D6058A60D05DD56006BFB54 /* Build configuration list for PBXNativeTarget "Audiobooks" */;
       buildPhases = (
-        AAF0AB011000000000000001 /* Sources */,
-        AAF0AB021000000000000001 /* Frameworks */,
-        AAF0AB031000000000000001 /* Resources */,
+        1D6058A70D05DD56006BFB54 /* Sources */,
+        1D6058A80D05DD56006BFB54 /* Frameworks */,
+        1D6058A90D05DD56006BFB54 /* Resources */,
       );
-      buildRules = ();
-      dependencies = ();
       name = Audiobooks;
       productName = Audiobooks;
-      productReference = AAF0AF041000000000000001 /* Audiobooks.app */;
+      productReference = 1D6058A40D05DD56006BFB54 /* Audiobooks.app */;
       productType = "com.apple.product-type.application";
     };
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-    AAF0AA001000000000000001 /* Project object */ = {
+    1D6058900D05DD3D006BFB54 /* Project object */ = {
       isa = PBXProject;
       attributes = {
         LastUpgradeCheck = 1640;
         TargetAttributes = {
-          AAF0AD001000000000000001 = {
+          1D6058910D05DD3D006BFB54 = {
             CreatedOnToolsVersion = 16.4;
             DevelopmentTeam = CW6VS28729;
+            ProvisioningStyle = Automatic;
           };
         };
       };
-      buildConfigurationList = AAF0A9051000000000000001 /* Build configuration list for PBXProject "Audiobooks" */;
+      buildConfigurationList = 1D6058AA0D05DD56006BFB54 /* Build configuration list for PBXProject "Audiobooks" */;
       compatibilityVersion = "Xcode 14.0";
       developmentRegion = en;
-      hasScannedForEncodings = 0;
-      knownRegions = (
-        en,
-        Base,
-      );
-      mainGroup = AAF0AE001000000000000001;
-      productRefGroup = AAF0AE051000000000000001 /* Products */;
-      projectDirPath = "";
+      knownRegions = (en, Base,);
+      mainGroup = 1D60589C0D05DD56006BFB54;
+      productRefGroup = 1D6058A50D05DD56006BFB54 /* Products */;
       projectRoot = "";
-      targets = (
-        AAF0AD001000000000000001 /* Audiobooks */,
-      );
+      targets = (1D6058910D05DD3D006BFB54 /* Audiobooks */,);
     };
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-    AAF0AB011000000000000001 /* Sources */ = {
+    1D6058A70D05DD56006BFB54 /* Sources */ = {
       isa = PBXSourcesBuildPhase;
       files = (
-        AAF0B0010000000000000001 /* ContentView.swift in Sources */,
-        AAF0B0020000000000000001 /* AppDelegate.swift in Sources */,
+        1D60589D0D05DD56006BFB54 /* ContentView.swift in Sources */,
+        1D60589F0D05DD56006BFB54 /* AppDelegate.swift in Sources */,
       );
     };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXFrameworksBuildPhase section */
-    AAF0AB021000000000000001 /* Frameworks */ = {
-      isa = PBXFrameworksBuildPhase;
-      files = (
-      );
-    };
+    1D6058A80D05DD56006BFB54 /* Frameworks */ = { isa = PBXFrameworksBuildPhase; files = (); };
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXResourcesBuildPhase section */
-    AAF0AB031000000000000001 /* Resources */ = {
-      isa = PBXResourcesBuildPhase;
-      files = (
-      );
-    };
+    1D6058A90D05DD56006BFB54 /* Resources */ = { isa = PBXResourcesBuildPhase; files = (); };
 /* End PBXResourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-/* Project-level configs */
-    AAF0A9011000000000000001 /* Debug */ = {
+    1D6058AB0D05DD56006BFB54 /* Debug */ = {
       isa = XCBuildConfiguration;
       buildSettings = {
-        ALWAYS_SEARCH_USER_PATHS = NO;
-        CLANG_ENABLE_MODULES = YES;
-        DEVELOPMENT_TEAM = CW6VS28729;
-        IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-        SWIFT_VERSION = 5.0;
-        SDKROOT = iphoneos;
-      };
-      name = Debug;
-    };
-    AAF0A9021000000000000001 /* Release */ = {
-      isa = XCBuildConfiguration;
-      buildSettings = {
-        ALWAYS_SEARCH_USER_PATHS = NO;
-        CLANG_ENABLE_MODULES = YES;
-        DEVELOPMENT_TEAM = CW6VS28729;
-        IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-        SWIFT_VERSION = 5.0;
-        SDKROOT = iphoneos;
-      };
-      name = Release;
-    };
-
-/* Target-level configs */
-    AAF0AC011000000000000001 /* Debug */ = {
-      isa = XCBuildConfiguration;
-      buildSettings = {
-        ALWAYS_SEARCH_USER_PATHS = NO;
         ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
         CODE_SIGN_STYLE = Automatic;
         DEVELOPMENT_TEAM = CW6VS28729;
-        INFOPLIST_FILE = Info.plist;
-        IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-        LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
         PRODUCT_BUNDLE_IDENTIFIER = com.example.audiobooks;
         PRODUCT_NAME = Audiobooks;
         SWIFT_VERSION = 5.0;
+        IPHONEOS_DEPLOYMENT_TARGET = 16.0;
         TARGETED_DEVICE_FAMILY = "1,2";
       };
       name = Debug;
     };
-    AAF0AC021000000000000001 /* Release */ = {
+    1D6058AC0D05DD56006BFB54 /* Release */ = {
       isa = XCBuildConfiguration;
       buildSettings = {
-        ALWAYS_SEARCH_USER_PATHS = NO;
         ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
         CODE_SIGN_STYLE = Automatic;
         DEVELOPMENT_TEAM = CW6VS28729;
-        INFOPLIST_FILE = Info.plist;
-        IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-        LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
         PRODUCT_BUNDLE_IDENTIFIER = com.example.audiobooks;
         PRODUCT_NAME = Audiobooks;
         SWIFT_VERSION = 5.0;
+        IPHONEOS_DEPLOYMENT_TARGET = 16.0;
         TARGETED_DEVICE_FAMILY = "1,2";
       };
       name = Release;
@@ -177,26 +128,18 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-    AAF0A9051000000000000001 /* Build configuration list for PBXProject "Audiobooks" */ = {
+    1D6058A60D05DD56006BFB54 /* Build configuration list for PBXNativeTarget "Audiobooks" */ = {
       isa = XCConfigurationList;
-      buildConfigurations = (
-        AAF0A9011000000000000001 /* Debug */,
-        AAF0A9021000000000000001 /* Release */,
-      );
-      defaultConfigurationIsVisible = 0;
+      buildConfigurations = (1D6058AB0D05DD56006BFB54, 1D6058AC0D05DD56006BFB54);
       defaultConfigurationName = Release;
     };
-    AAF0AC051000000000000001 /* Build configuration list for PBXNativeTarget "Audiobooks" */ = {
+    1D6058AA0D05DD56006BFB54 /* Build configuration list for PBXProject "Audiobooks" */ = {
       isa = XCConfigurationList;
-      buildConfigurations = (
-        AAF0AC011000000000000001 /* Debug */,
-        AAF0AC021000000000000001 /* Release */,
-      );
-      defaultConfigurationIsVisible = 0;
+      buildConfigurations = (1D6058AB0D05DD56006BFB54, 1D6058AC0D05DD56006BFB54);
       defaultConfigurationName = Release;
     };
 /* End XCConfigurationList section */
 
   };
-  rootObject = AAF0AA001000000000000001 /* Project object */;
+  rootObject = 1D6058900D05DD3D006BFB54 /* Project object */;
 }
