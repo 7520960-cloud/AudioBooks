@@ -1,9 +1,11 @@
 platform :ios, '16.0'
-use_frameworks!
-use_modular_headers!
+
+project 'ios/Audiobooks.xcodeproj'
 
 target 'Audiobooks' do
-  project 'Audiobooks.xcodeproj'
-  pod 'Alamofire', '~> 5.7'
-  pod 'SDWebImage', '~> 5.0'
+  use_frameworks!
+  use_modular_headers!
+
+  pod 'Alamofire', '~> 5.6'
+  pod 'SwiftyJSON', '~> 5.0'
 end
