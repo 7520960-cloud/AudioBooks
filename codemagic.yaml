@@ -3,24 +3,23 @@ workflows:
     name: iOS App Store Build
     environment:
       xcode: 16.4
+      cocoapods: default
     integrations:
       app_store_connect: integration
     scripts:
-      - name: Set up code signing
+      - name: Install dependencies
         script: |
-          keychain initialize
-          app-store-connect fetch-signing-files \
-            --type IOS_APP_STORE \
-            --bundle-id com.serhiitkachuk.Audiobooks \
-            --create
-          keychain add-certificates
-          xcode-project use-profiles
+          cd ios
+          pod install --repo-update
       - name: Build app for release
         script: |
           xcode-project build-ipa \
             --project ios/Audiobooks.xcodeproj \
             --scheme Audiobooks \
-            --export-options-plist ios/export_options.plist
+            --export-options-plist ios/export_options.plist \
+            CODE_SIGN_STYLE=Automatic \
+            DEVELOPMENT_TEAM=CW6VS28729 \
+            --archive-flags="-allowProvisioningUpdates"
     artifacts:
       - build/ios/ipa/*.ipa
     publishing:
