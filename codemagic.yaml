@@ -22,6 +22,7 @@ workflows:
             -project Audiobooks.xcodeproj \
             -scheme Audiobooks \
             -configuration Release \
+            -destination 'generic/platform=iOS' \
             -allowProvisioningUpdates \
             -archivePath ../build/ios/xcarchive/Audiobooks.xcarchive \
             DEVELOPMENT_TEAM=CW6VS28729 \
