@@ -5,11 +5,6 @@ workflows:
       xcode: 16.4
     integrations:
       app_store_connect: integration
-
-    ios_signing:
-      distribution_type: app_store
-      bundle_identifier: com.serhiitkachuk.Audiobooks
-
     scripts:
       - name: Set up code signing
         script: |
@@ -20,17 +15,14 @@ workflows:
             --create
           keychain add-certificates
           xcode-project use-profiles
-
       - name: Build app for release
         script: |
           xcode-project build-ipa \
             --project ios/Audiobooks.xcodeproj \
             --scheme Audiobooks \
             --export-options-plist ios/export_options.plist
-
     artifacts:
       - build/ios/ipa/*.ipa
-
     publishing:
       app_store_connect:
         auth: integration
