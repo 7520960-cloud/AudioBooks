@@ -65,7 +65,7 @@
           1D6058910D05DD3D006BFB54 = {
             CreatedOnToolsVersion = 16.4;
             DevelopmentTeam = CW6VS28729;
-            ProvisioningStyle = Automatic;
+            ProvisioningStyle = Manual;
           };
         };
       };
@@ -100,14 +100,16 @@
 /* Begin PBXFrameworksBuildPhase section */
     1D6058A80D05DD56006BFB54 /* Frameworks */ = {
       isa = PBXFrameworksBuildPhase;
-      files = ();
+      files = (
+      );
     };
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXResourcesBuildPhase section */
     1D6058A90D05DD56006BFB54 /* Resources */ = {
       isa = PBXResourcesBuildPhase;
-      files = ();
+      files = (
+      );
     };
 /* End PBXResourcesBuildPhase section */
 
@@ -117,7 +119,8 @@
       buildSettings = {
         ALWAYS_SEARCH_USER_PATHS = NO;
         ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-        CODE_SIGN_STYLE = Automatic;
+        CODE_SIGN_STYLE = Manual;
+        CODE_SIGN_IDENTITY = "Apple Development";
         CURRENT_PROJECT_VERSION = 1;
         DEVELOPMENT_TEAM = CW6VS28729;
         GENERATE_INFOPLIST_FILE = NO;
@@ -129,6 +132,7 @@
         TARGETED_DEVICE_FAMILY = "1,2";
         SDKROOT = iphoneos;
         SUPPORTED_PLATFORMS = iphoneos;
+        PROVISIONING_PROFILE_SPECIFIER = "audiobooks_appstore_profile";
       };
       name = Debug;
     };
@@ -137,7 +141,8 @@
       buildSettings = {
         ALWAYS_SEARCH_USER_PATHS = NO;
         ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-        CODE_SIGN_STYLE = Automatic;
+        CODE_SIGN_STYLE = Manual;
+        CODE_SIGN_IDENTITY = "Apple Distribution";
         CURRENT_PROJECT_VERSION = 1;
         DEVELOPMENT_TEAM = CW6VS28729;
         GENERATE_INFOPLIST_FILE = NO;
@@ -149,6 +154,7 @@
         TARGETED_DEVICE_FAMILY = "1,2";
         SDKROOT = iphoneos;
         SUPPORTED_PLATFORMS = iphoneos;
+        PROVISIONING_PROFILE_SPECIFIER = "audiobooks_appstore_profile";
       };
       name = Release;
     };
