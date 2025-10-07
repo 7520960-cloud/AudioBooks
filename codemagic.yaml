@@ -6,15 +6,10 @@ workflows:
     integrations:
       app_store_connect: integration
     scripts:
-      - name: Set up code signing
+      - name: Install CocoaPods dependencies
         script: |
-          keychain initialize
-          app-store-connect fetch-signing-files \
-            --type IOS_APP_STORE \
-            --bundle-id com.serhiitkachuk.Audiobooks \
-            --create
-          keychain add-certificates
-          xcode-project use-profiles
+          cd ios
+          pod install --repo-update
       - name: Build app for release
         script: |
           xcodebuild \
