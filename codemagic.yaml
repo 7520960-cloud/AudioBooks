@@ -6,14 +6,10 @@ workflows:
     integrations:
       app_store_connect: integration
     scripts:
-      - name: Clean workspace (optional safety)
+      - name: Clean workspace
         script: |
           rm -rf ~/Library/Developer/Xcode/DerivedData
           rm -rf build
-      - name: Install CocoaPods dependencies
-        script: |
-          cd ios
-          pod install --repo-update
       - name: Build app for release
         script: |
           xcodebuild \
@@ -23,7 +19,8 @@ workflows:
             -configuration Release \
             -archivePath build/ios/xcarchive/Audiobooks.xcarchive \
             DEVELOPMENT_TEAM=CW6VS28729 \
-            CODE_SIGN_STYLE=Automatic \
+            CODE_SIGN_STYLE=Manual \
+            PROVISIONING_PROFILE_SPECIFIER="audiobooks_appstore_profile" \
             -allowProvisioningUpdates \
             archive
 
