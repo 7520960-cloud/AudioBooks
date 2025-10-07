@@ -5,13 +5,14 @@ workflows:
       xcode: 16.4
     integrations:
       app_store_connect: integration
+
     scripts:
       - name: Clean workspace
         script: |
           rm -rf ~/Library/Developer/Xcode/DerivedData
           rm -rf build
 
-      - name: Fetch signing files
+      - name: Fetch signing files from App Store Connect
         script: |
           app-store-connect fetch-signing-files \
             --type IOS_APP_STORE \
