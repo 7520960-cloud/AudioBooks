@@ -9,20 +9,38 @@ workflows:
     scripts:
       - name: Clean workspace
         script: |
+          echo "🧹 Cleaning old data..."
           rm -rf ~/Library/Developer/Xcode/DerivedData
           rm -rf build
 
-      - name: Fetch signing files from App Store Connect
+      - name: Fetch signing files
         script: |
+          echo "🔑 Initializing keychain and fetching signing files..."
+          keychain initialize
+
           app-store-connect fetch-signing-files \
             --type IOS_APP_STORE \
             --bundle-id com.serhiitkachuk.Audiobooks \
-            --create
+            --create --verbose
+
+          echo "📥 Adding certificates to keychain..."
           keychain add-certificates
+
+          echo "📂 Applying provisioning profiles to Xcode project..."
           xcode-project use-profiles
+
+          echo "🧾 Listing installed provisioning profiles:"
+          ls -al ~/Library/MobileDevice/Provisioning\ Profiles || true
+
+          echo "✅ Checking if provisioning profile exists..."
+          if ! ls ~/Library/MobileDevice/Provisioning\ Profiles | grep -q ".mobileprovision"; then
+            echo "❌ No provisioning profiles found. Stopping build."
+            exit 1
+          fi
 
       - name: Build app for release
         script: |
+          echo "🚀 Starting Xcode archive..."
           xcodebuild \
             -project ios/Audiobooks.xcodeproj \
             -scheme Audiobooks \
@@ -35,6 +53,7 @@ workflows:
             -allowProvisioningUpdates \
             archive
 
+          echo "📦 Exporting IPA..."
           xcodebuild \
             -exportArchive \
             -archivePath build/ios/xcarchive/Audiobooks.xcarchive \
