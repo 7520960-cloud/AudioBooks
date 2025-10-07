@@ -15,24 +15,23 @@ workflows:
             --create
           keychain add-certificates
           xcode-project use-profiles
-      - name: Build app with xcodebuild
+      - name: Build app for release
         script: |
-          cd ios
-          xcodebuild archive \
-            -project Audiobooks.xcodeproj \
+          xcodebuild \
+            -project ios/Audiobooks.xcodeproj \
             -scheme Audiobooks \
-            -sdk iphoneos \
-            -destination 'generic/platform=iPhoneOS' \
+            -destination 'generic/platform=iOS' \
             -configuration Release \
-            -allowProvisioningUpdates \
-            -archivePath ../build/ios/xcarchive/Audiobooks.xcarchive \
+            -archivePath build/ios/xcarchive/Audiobooks.xcarchive \
             DEVELOPMENT_TEAM=CW6VS28729 \
             CODE_SIGN_STYLE=Automatic \
-            | xcpretty
-          xcodebuild -exportArchive \
-            -archivePath ../build/ios/xcarchive/Audiobooks.xcarchive \
-            -exportOptionsPlist export_options.plist \
-            -exportPath ../build/ios/ipa
+            archive
+
+          xcodebuild \
+            -exportArchive \
+            -archivePath build/ios/xcarchive/Audiobooks.xcarchive \
+            -exportOptionsPlist ios/export_options.plist \
+            -exportPath build/ios/ipa
     artifacts:
       - build/ios/ipa/*.ipa
     publishing:
