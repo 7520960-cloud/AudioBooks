@@ -100,16 +100,14 @@
 /* Begin PBXFrameworksBuildPhase section */
     1D6058A80D05DD56006BFB54 /* Frameworks */ = {
       isa = PBXFrameworksBuildPhase;
-      files = (
-      );
+      files = ();
     };
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXResourcesBuildPhase section */
     1D6058A90D05DD56006BFB54 /* Resources */ = {
       isa = PBXResourcesBuildPhase;
-      files = (
-      );
+      files = ();
     };
 /* End PBXResourcesBuildPhase section */
 
@@ -129,6 +127,8 @@
         PRODUCT_NAME = Audiobooks;
         SWIFT_VERSION = 5.0;
         TARGETED_DEVICE_FAMILY = "1,2";
+        SDKROOT = iphoneos;
+        SUPPORTED_PLATFORMS = iphoneos;
       };
       name = Debug;
     };
@@ -147,6 +147,8 @@
         PRODUCT_NAME = Audiobooks;
         SWIFT_VERSION = 5.0;
         TARGETED_DEVICE_FAMILY = "1,2";
+        SDKROOT = iphoneos;
+        SUPPORTED_PLATFORMS = iphoneos;
       };
       name = Release;
     };
