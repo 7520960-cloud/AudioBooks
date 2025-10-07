@@ -11,9 +11,8 @@ workflows:
           rm -rf ~/Library/Developer/Xcode/DerivedData
           rm -rf build
 
-      - name: Set up signing
+      - name: Fetch signing files
         script: |
-          keychain initialize
           app-store-connect fetch-signing-files \
             --type IOS_APP_STORE \
             --bundle-id com.serhiitkachuk.Audiobooks \
@@ -31,6 +30,7 @@ workflows:
             -archivePath build/ios/xcarchive/Audiobooks.xcarchive \
             DEVELOPMENT_TEAM=CW6VS28729 \
             CODE_SIGN_STYLE=Manual \
+            PROVISIONING_PROFILE_SPECIFIER="audiobooks_appstore_profile" \
             -allowProvisioningUpdates \
             archive
 
@@ -42,6 +42,7 @@ workflows:
 
     artifacts:
       - build/ios/ipa/*.ipa
+
     publishing:
       app_store_connect:
         auth: integration
